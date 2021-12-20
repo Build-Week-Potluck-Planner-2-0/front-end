@@ -6,7 +6,7 @@ export default function RegisterForm(props){
 
     const handleChange = evt => {
         const { name, value } = evt.target;
-        handleChange(name, value)
+        change(name, value)
     }
 
     const handleSubmit = evt => {
@@ -15,6 +15,7 @@ export default function RegisterForm(props){
     }
 
     return(
+        console.log(values),
         <div>
             <form onSubmit={handleSubmit}>
                 <label>Username
@@ -23,7 +24,7 @@ export default function RegisterForm(props){
                         onChange={handleChange}
                         name='username'
                         type='text'
-                        id='nameInput'
+                        id='usernameInput'
                     />
                 </label>
                 <label>Email

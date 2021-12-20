@@ -5,10 +5,10 @@ import axios from 'axios';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Login from './components/Login';
-import Register from './components/RegisterForm';
+import Register from './components/Register';
 
 const initialFormValues = {
-  name: '',
+  username: '',
   email: '',
   password: '',
 }
@@ -51,7 +51,7 @@ function App() {
 
       <Routes>
         <Route exact path='/login' element={<Login />} />
-        <Route exact path='/register' element={<Register />} values={formValues} change={inputChange} submit={formSubmit} />
+        <Route exact path='/register' element={<Register values={formValues} change={inputChange} submit={formSubmit}/>}  />
         <Route exact path='/' element={<Home />} />
       </Routes>
       
