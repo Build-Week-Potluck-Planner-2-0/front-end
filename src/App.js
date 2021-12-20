@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import Footer from './components/Footer';
+import Logout from './components/Logout';
 
 const initialFormValues = {
   username: '',
@@ -52,6 +53,7 @@ function App() {
         <Navbar />
 
         <Routes>
+          <Route path="/logout" element={<Logout />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/register' element={<Register values={formValues} change={inputChange} submit={formSubmit}/>}  />
           <Route exact path='/' element={<Home />} />
