@@ -5,7 +5,7 @@ import styled from 'styled-components';
 function Navbar() {
     return(
         <StyledNav>
-            <div>POTLUCK PLANNER</div>
+            <a href='/'><div>POTLUCK PLANNER</div></a>
             <nav id='navLinks'>
                 <Link to='/'>HOME</Link>
                 <Link to='/login'>LOGIN</Link>
