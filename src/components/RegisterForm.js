@@ -31,7 +31,7 @@ export default function RegisterForm(props){
                         value={values.email}
                         onChange={handleChange}
                         name='email'
-                        type='text'
+                        type='email'
                         id='emailInput'
                     />
                 </label>

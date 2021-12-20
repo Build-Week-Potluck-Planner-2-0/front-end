@@ -6,6 +6,7 @@ function Dashboard() {
         <div>
             <Link to="/">PooPoo
             </Link>
+            <h2> hello </h2>
         </div>
     )
 }
