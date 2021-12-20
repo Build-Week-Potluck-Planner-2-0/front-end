@@ -1,8 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Dashboard() {
     return(
-        <div></div>
+        <div>
+            <Link to="/">PooPoo
+            </Link>
+        </div>
     )
 }
 
