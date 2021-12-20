@@ -19,6 +19,7 @@ export default function LoginForm(){
                         id='passwordInput'
                     />
                 </label>
+                <button>Login</button>
             </form>
         </div>
 
