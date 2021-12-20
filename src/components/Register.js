@@ -11,7 +11,7 @@ const initialFormValues = {
 const initialUsers = [];
 
 
-function Register(){
+function Register() {
     const [users, setUsers] = useState(initialUsers);
     const [formValues, setFormValues] = useState(initialFormValues);
 
