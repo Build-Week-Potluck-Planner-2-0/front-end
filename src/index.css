@@ -6,23 +6,43 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   font-size: 100%;  
   font: inherit;  
   vertical-align: baseline;  
-  }
+}
   
-  /*GENERAL STYLES*/
-  html {
-    font-size:62.5%;
-  }
-  
-  body {
-    font-size:1.6rem;
-    line-height: 1.5;
-    font-family: 'Raleway', sans-serif;
-  }
-  
-  html, body {
-    height: 100vh;
-  }
-  
-  .footerBar, .push {
-    height: 40px;
-  }
+/*GENERAL STYLES*/
+html {
+  font-size:62.5%;
+}
+
+body {
+  font-size:1.6rem;
+  line-height: 1.5;
+  font-family: 'Raleway', sans-serif;
+}
+
+html, body {
+  height: 100vh;
+}
+
+.footerBar, .push {
+  height: 40px;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+
+/* Push footer to bottom of page */
+.wrapper {
+  min-height: 100vh;
+  margin-bottom: -40px;
+}
+.footerBar, .push {
+  height: 40px;
+}

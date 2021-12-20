@@ -15,7 +15,6 @@ export default function RegisterForm(props){
     }
 
     return(
-        console.log(values),
         <div>
             <form onSubmit={handleSubmit}>
                 <label>Username

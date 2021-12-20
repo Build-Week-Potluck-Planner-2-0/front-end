@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
+import Footer from './components/Footer';
 
 const initialFormValues = {
   username: '',
@@ -47,14 +48,18 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <div className="wrapper"> {/* <<<   Pushes footer down*/}
+        <Navbar />
 
-      <Routes>
-        <Route exact path='/login' element={<Login />} />
-        <Route exact path='/register' element={<Register values={formValues} change={inputChange} submit={formSubmit}/>}  />
-        <Route exact path='/' element={<Home />} />
-      </Routes>
-      
+        <Routes>
+          <Route exact path='/login' element={<Login />} />
+          <Route exact path='/register' element={<Register values={formValues} change={inputChange} submit={formSubmit}/>}  />
+          <Route exact path='/' element={<Home />} />
+        </Routes>
+
+        <div className="push"></div> {/* <<<   Pushes footer down*/}
+      </div>
+      <Footer />
     </div>
   );
 }
