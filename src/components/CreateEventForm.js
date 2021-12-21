@@ -1,36 +1,54 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function CreateEvent(){
+export default function CreateEvent(props){
+
+    const { values, change, submit } = props;
+
+    const handleChange = evt => {
+        const { name, value } = evt.target;
+        change(name, value)
+    }
+
+    const handleSubmit = evt => {
+        evt.preventDefault()
+        submit()
+    }
+
 
     return(
         <StyledEvent>
-            <h1>Create an event</h1>
-            <form id="createEventForm" onSubmit={(e) => {
-                e.preventDefault()
-                console.log(e)
-            }}>
+            <h1>Event Form</h1>
+            <form id="createEventForm" onSubmit={handleSubmit}>
 
                 <label>Event title
                     <input 
+                        value={values.title}
+                        onChange={handleChange}
                         name='title'
                         type='text'
                     />    
                 </label>
                 <label>Event Date
                     <input 
+                        value={values.date}
+                        onChange={handleChange}
                         name='date'
                         type='date'
                     />    
                 </label>
                 <label>Event Time
                     <input 
+                        value={values.time}
+                        onChange={handleChange}
                         name='time'
                         type='time'
                     />    
                 </label>
                 <label>Item
                     <input 
+                        value={values.item}
+                        onChange={handleChange}
                         name='item'
                         type='text'
                     />    

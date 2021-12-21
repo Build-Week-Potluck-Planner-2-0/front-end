@@ -8,7 +8,7 @@ import Register from './components/Register';
 import Footer from './components/Footer';
 import Logout from './components/Logout';
 import Dashboard from './components/Dashboard';
-import CreateEventForm from './components/CreateEventForm'
+import CreateEvent from './components/CreateEvent'
 
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
 
         <Routes>
           <Route exact path='/dashboard' element={<Dashboard />} />
-          <Route exact path='/create' element={<CreateEventForm />} />
+          <Route exact path='/create' element={<CreateEvent />} />
           <Route exact path='/logout' element={<Logout />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/register' element={<Register />}  />

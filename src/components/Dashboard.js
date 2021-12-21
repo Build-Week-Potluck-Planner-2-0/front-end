@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import HostedEvent from './HostedEvent';
-import OpenInvitations from './OpenInvitations';
+import InviteOpen from './InviteOpen';
+import InviteAccepted from './InviteAccepted';
 
 class Dashboard extends React.Component {
     state = {
-        userEvents: ''
+        hostedEvents: [],
+        receivedInvites: []        
     };
     
     componentDidMount() {
@@ -20,7 +22,8 @@ class Dashboard extends React.Component {
             .then(res => {
                 console.log("Getting User Data:", res);
                 this.setState({
-                    userEvents: res.data
+                    hostedEvents: res.data.hosted,
+                    receivedInvites: res.data.InvitedTo
                 });
             })
             .catch(err => {
@@ -37,7 +40,7 @@ class Dashboard extends React.Component {
                 
                 <div>
                     <h2>You are Hosting</h2>
-                    {/* {this.state.userEvents.hosted.length !== 0 ? this.state.userEvents.hosted.map(event => {
+                    {/* {this.state.hostedEvents.length !== 0 ? this.state.hostedEvents.map(event => {
                         return(<HostedEvent event={event} />)
                     }) : <p>You have not created any events.</p> } */}
                     <Link to="/create" className="dashButton" >Create Event</Link>
@@ -45,19 +48,20 @@ class Dashboard extends React.Component {
                 
                 <div>
                     <h2>Your Open Invitations</h2>
-                    {/* {this.state.hostedEvents.filter(event => {
-                        return(<OpenInvitations event={event} />)
+                    {/* {this.state.receivedInvites.map(event => {
+                        event.invites.filter(invite => invite.to === this.userId && invite.status === "pending").map(event => {
+                            return(<InviteOpen event={event}/>)
+                        })
                     })} */}
                 </div>
                 
                 <div>
                     <h2>Your Accepted Events</h2>
-                    {/* Need to get back:
-                    - Event Name
-                    - Event Date
-                    - Event Time
-                    - Event Location 
-                    - WHAT YOU are bringing */}
+                    {/* {this.state.receivedInvites.map(event => {
+                        event.invites.filter(invite => invite.to === this.userId && invite.status === "accepted").map(event => {
+                            return(<InviteAccepted event={event}/>)
+                        })
+                    })} */}
                 </div>
             </StyledDash>
         )
