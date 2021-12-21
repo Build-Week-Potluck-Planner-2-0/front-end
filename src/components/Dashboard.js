@@ -1,5 +1,51 @@
-// import React from "react";
-// import styled from "styled-components";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+function Dashboard() {
+    return(
+        <StyledDash>
+            <header>
+                <h1>DASHBOARD</h1>
+            </header>
+            
+            <div>
+                <h2>You are Hosting</h2>
+                <Link to="/" className="dashButton" >Create Event</Link>
+                {/* Need to get back:
+                - Event Name
+                - Event Date 
+                - Event Time 
+                - Event Location */}
+            </div>
+            
+            <div>
+                <h2>Your Open Invitations</h2>
+                {/* Need to get back:
+                - Event Name
+                - Event Date
+                - Event Time
+                - Event Location */}
+            </div>
+            
+            <div>
+                <h2>Your Accepted Events</h2>
+                {/* Need to get back:
+                - Event Name
+                - Event Date
+                - Event Time
+                - Event Location 
+                - WHAT YOU are bringing */}
+            </div>
+        </StyledDash>
+    )
+}
+
+export default Dashboard;
+
+const StyledDash = styled.div`
+`
+
 
 // const StyledStatusContainer = styled.div`
 //   display: flex;
@@ -70,51 +116,3 @@
 //     </StyledStatusContainer>
 //   );
 // }
-
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-
-function Dashboard() {
-    return(
-        <StyledDash>
-            <header>
-                <h1>DASHBOARD</h1>
-            </header>
-            
-            <div>
-                <h2>You are Hosting</h2>
-                <Link to="/" className="dashButton" >Create Event</Link>
-                {/* Need to get back:
-                - Event Name
-                - Event Date 
-                - Event Time 
-                - Event Location */}
-            </div>
-            
-            <div>
-                <h2>Your Open Invitations</h2>
-                {/* Need to get back:
-                - Event Name
-                - Event Date
-                - Event Time
-                - Event Location */}
-            </div>
-            
-            <div>
-                <h2>Your Accepted Events</h2>
-                {/* Need to get back:
-                - Event Name
-                - Event Date
-                - Event Time
-                - Event Location 
-                - WHAT YOU are bringing */}
-            </div>
-        </StyledDash>
-    )
-}
-
-export default Dashboard;
-
-const StyledDash = styled.div`
-`
