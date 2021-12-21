@@ -7,7 +7,7 @@ const axiosWithAuth = () => {
         headers: {
             authorization: token
         },
-        baseURL: "http://localhost:3000/api"
+        baseURL: "https://bw-potluck-planner-2.herokuapp.com/api/auth/"
     });
 }
 

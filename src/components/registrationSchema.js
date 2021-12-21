@@ -15,7 +15,7 @@ const registrationSchema = yup.object().shape({
         .string()
         .trim()
         .required('Password is required')
-        .min(6, 'Password must be at least 6 characters')
+        .min(4, 'Password must be at least 4 characters')
 })
 
 export default registrationSchema

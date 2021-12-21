@@ -1,44 +1,76 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
-function Dashboard() {
-    return(
-        <StyledDash>
-            <header>
-                <h1>DASHBOARD</h1>
-            </header>
-            
-            <div>
-                <h2>You are Hosting</h2>
-                <Link to="/" className="dashButton" >Create Event</Link>
-                {/* Need to get back:
-                - Event Name
-                - Event Date 
-                - Event Time 
-                - Event Location */}
-            </div>
-            
-            <div>
-                <h2>Your Open Invitations</h2>
-                {/* Need to get back:
-                - Event Name
-                - Event Date
-                - Event Time
-                - Event Location */}
-            </div>
-            
-            <div>
-                <h2>Your Accepted Events</h2>
-                {/* Need to get back:
-                - Event Name
-                - Event Date
-                - Event Time
-                - Event Location 
-                - WHAT YOU are bringing */}
-            </div>
-        </StyledDash>
-    )
+class Dashboard extends React.Component {
+    state = {
+        hostedEvents: ''
+    };
+    
+    componentDidMount() {
+        const token = localStorage.getItem("token");
+        const userId = localStorage.getItem("userId");
+
+        axiosWithAuth()
+            .get(`/${this.userId}/potlucks`)
+            .then(res => {
+                console.log("Getting User Data:", res);
+                this.setState({
+                    hostedEvents: res.data
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+        axiosWithAuth()
+            .get(`/${this.userId}/potlucks`)
+            .then(res => {
+                console.log("Getting User Data:", res);
+                this.setState({
+                    hostedEvents: res.data
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    render() {
+        return(
+            <StyledDash>
+                <header>
+                    <h1>DASHBOARD</h1>
+                </header>
+                
+                <div>
+                    <h2>You are Hosting</h2>
+                    <Link to="/" className="dashButton" >Create Event</Link>
+                    {this.state.userInfo}
+                </div>
+                
+                <div>
+                    <h2>Your Open Invitations</h2>
+                    {/* Need to get back:
+                    - Event Name
+                    - Event Date
+                    - Event Time
+                    - Event Location */}
+                </div>
+                
+                <div>
+                    <h2>Your Accepted Events</h2>
+                    {/* Need to get back:
+                    - Event Name
+                    - Event Date
+                    - Event Time
+                    - Event Location 
+                    - WHAT YOU are bringing */}
+                </div>
+            </StyledDash>
+        )
+    }
 }
 
 export default Dashboard;
