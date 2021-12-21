@@ -1,8 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
 
 export default function RegisterForm(props){
 
-    const { values, change, submit } = props;
+    const { values, change, submit, disabled, errors } = props;
 
     const handleChange = evt => {
         const { name, value } = evt.target;
@@ -15,8 +16,13 @@ export default function RegisterForm(props){
     }
 
     return(
-        <div>
+        <StyledRegForm>
             <form onSubmit={handleSubmit}>
+                <div>
+                    <h3>{errors.username}</h3>
+                    <h3>{errors.email}</h3>
+                    <h3>{errors.password}</h3>
+                </div>
                 <label>Username
                     <input
                         value={values.username}
@@ -31,7 +37,7 @@ export default function RegisterForm(props){
                         value={values.email}
                         onChange={handleChange}
                         name='email'
-                        type='text'
+                        type='email'
                         id='emailInput'
                     />
                 </label>
@@ -44,9 +50,19 @@ export default function RegisterForm(props){
                         id='passwordInput'
                     />
                 </label>
-                <button>Login</button>
+                <button disabled={disabled}>Register</button>
             </form>
-        </div>
+        </StyledRegForm>
 
     )
 }
+
+const StyledRegForm = styled.div`
+    margin-top: 4%;
+    label{
+        margin: 1%;
+    }
+    input{
+        margin: 0.5%;
+    }
+`
