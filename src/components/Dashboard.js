@@ -1,5 +1,78 @@
-// import React from "react";
-// import styled from "styled-components";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import axiosWithAuth from '../utils/axiosWithAuth';
+import HostedEvent from './HostedEvent';
+import InviteOpen from './InviteOpen';
+import InviteAccepted from './InviteAccepted';
+
+class Dashboard extends React.Component {
+    state = {
+        hostedEvents: [],
+        receivedInvites: []        
+    };
+    
+    componentDidMount() {
+        const token = localStorage.getItem("token");
+        const userId = localStorage.getItem("userId");
+        
+        // Pulling initial userData (all events, your hosted, and invites)
+        axiosWithAuth()
+            .get(`/${userId}/potlucks`)
+            .then(res => {
+                console.log("Getting User Data:", res);
+                this.setState({
+                    hostedEvents: res.data.hosted,
+                    receivedInvites: res.data.InvitedTo
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    render() {
+        return(
+            <StyledDash>
+                <header>
+                    <h1>DASHBOARD</h1>
+                </header>
+                
+                <div>
+                    <h2>You are Hosting</h2>
+                    {/* {this.state.hostedEvents.length !== 0 ? this.state.hostedEvents.map(event => {
+                        return(<HostedEvent event={event} />)
+                    }) : <p>You have not created any events.</p> } */}
+                    <Link to="/create" className="dashButton" >Create Event</Link>
+                </div>
+                
+                <div>
+                    <h2>Your Open Invitations</h2>
+                    {/* {this.state.receivedInvites.map(event => {
+                        event.invites.filter(invite => invite.to === this.userId && invite.status === "pending").map(event => {
+                            return(<InviteOpen event={event}/>)
+                        })
+                    })} */}
+                </div>
+                
+                <div>
+                    <h2>Your Accepted Events</h2>
+                    {/* {this.state.receivedInvites.map(event => {
+                        event.invites.filter(invite => invite.to === this.userId && invite.status === "accepted").map(event => {
+                            return(<InviteAccepted event={event}/>)
+                        })
+                    })} */}
+                </div>
+            </StyledDash>
+        )
+    }
+}
+
+export default Dashboard;
+
+const StyledDash = styled.div`
+`
+
 
 // const StyledStatusContainer = styled.div`
 //   display: flex;
@@ -70,51 +143,3 @@
 //     </StyledStatusContainer>
 //   );
 // }
-
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-
-function Dashboard() {
-    return(
-        <StyledDash>
-            <header>
-                <h1>DASHBOARD</h1>
-            </header>
-            
-            <div>
-                <h2>You are Hosting</h2>
-                <Link to="/" className="dashButton" >Create Event</Link>
-                {/* Need to get back:
-                - Event Name
-                - Event Date 
-                - Event Time 
-                - Event Location */}
-            </div>
-            
-            <div>
-                <h2>Your Open Invitations</h2>
-                {/* Need to get back:
-                - Event Name
-                - Event Date
-                - Event Time
-                - Event Location */}
-            </div>
-            
-            <div>
-                <h2>Your Accepted Events</h2>
-                {/* Need to get back:
-                - Event Name
-                - Event Date
-                - Event Time
-                - Event Location 
-                - WHAT YOU are bringing */}
-            </div>
-        </StyledDash>
-    )
-}
-
-export default Dashboard;
-
-const StyledDash = styled.div`
-`

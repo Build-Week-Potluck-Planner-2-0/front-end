@@ -20,6 +20,7 @@ export default function LoginForm(props){
             <form onSubmit={handleSubmit}>
                 <div>
                     <h3>{errors.username}</h3>
+                    <h3>{errors.email}</h3>
                     <h3>{errors.password}</h3>
                 </div>
                 <label>Username
@@ -29,6 +30,15 @@ export default function LoginForm(props){
                         name='username'
                         type='text'
                         id='usernameInput'
+                    />
+                </label>
+                <label>Email
+                    <input
+                        value={values.email}
+                        onChange={handleChange}
+                        name='email'
+                        type='email'
+                        id='emailInput'
                     />
                 </label>
                 <label>Password

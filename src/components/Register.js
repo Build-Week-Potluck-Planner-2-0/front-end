@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import RegisterForm from './RegisterForm';
 import axios from 'axios';
 import * as yup from 'yup';
@@ -19,18 +20,22 @@ const initialFormErrors = {
 const initialUsers = [];
 const initialDisabled = true;
 
-
-function Register() {
+function Register(){
     const [users, setUsers] = useState(initialUsers);
     const [formValues, setFormValues] = useState(initialFormValues);
     const [formErrors, setFormErrors] = useState(initialFormErrors);
     const [disabled, setDisabled] = useState(initialDisabled);
+    const navigate = useNavigate();
 
     const registerUser = newUser => {
-        axios.post('https://reqres.in/api/orders', newUser)
+        axios.post(`https://bw-potluck-planner-2.herokuapp.com/api/auth/register`, newUser)
         .then(res => {
-            console.log(res)
-            setUsers(res.data)
+            console.log("Just registered: ", res.data)
+            setUsers(res.data);
+            const { token, id } = res.data;
+            localStorage.setItem("token", token);
+            localStorage.setItem("userId", id);
+            navigate("/dashboard");
         }).catch(err => console.error(err))
         .finally(() => setFormValues(initialFormValues))
     }
@@ -52,7 +57,7 @@ function Register() {
 
     const formSubmit = () => {
         const newUser = {
-        name: formValues.username.trim(),
+        username: formValues.username.trim(),
         email: formValues.email.trim(),
         password: formValues.password.trim(),
         }

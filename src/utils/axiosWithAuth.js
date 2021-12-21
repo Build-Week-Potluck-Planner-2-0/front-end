@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const axiosWithAuth = ()=> {
+const axiosWithAuth = () => {
     const token = localStorage.getItem('token');
 
     return axios.create({
         headers: {
             authorization: token
         },
-        baseURL: "http://localhost:3000/api"
+        baseURL: "https://bw-potluck-planner-2.herokuapp.com/api/auth/"
     });
 }
 
