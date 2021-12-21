@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Styled from 'styled-components'
+// //import { Link } from 'react-router-dom';
+// //import Styled from 'styled-components';
 function Home(){
 
     return(
@@ -9,15 +9,16 @@ function Home(){
         </>
     )
 }
-const Styled = styled.button`
+// //const StyledButton = Styled.button`
 
 
-`
-// register button - links to Register.js
+// //`
+// //console.log(StyledButton)
+// // register button - links to Register.js
 
-// login button - links to Login.js
+// // login button - links to Login.js
 
-// Img - large img to display on homepage
+// // Img - large img to display on homepage
 
 
 

@@ -2,34 +2,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import HostedEvent from './HostedEvent';
+import OpenInvitations from './OpenInvitations';
 
 class Dashboard extends React.Component {
     state = {
-        hostedEvents: ''
+        userEvents: ''
     };
     
     componentDidMount() {
         const token = localStorage.getItem("token");
         const userId = localStorage.getItem("userId");
-
+        
+        // Pulling initial userData (all events, your hosted, and invites)
         axiosWithAuth()
-            .get(`/${this.userId}/potlucks`)
+            .get(`/${userId}/potlucks`)
             .then(res => {
                 console.log("Getting User Data:", res);
                 this.setState({
-                    hostedEvents: res.data
-                });
-            })
-            .catch(err => {
-                console.log(err);
-            })
-
-        axiosWithAuth()
-            .get(`/${this.userId}/potlucks`)
-            .then(res => {
-                console.log("Getting User Data:", res);
-                this.setState({
-                    hostedEvents: res.data
+                    userEvents: res.data
                 });
             })
             .catch(err => {
@@ -46,17 +37,17 @@ class Dashboard extends React.Component {
                 
                 <div>
                     <h2>You are Hosting</h2>
-                    <Link to="/" className="dashButton" >Create Event</Link>
-                    {this.state.userInfo}
+                    {this.state.userEvents.hosted.length !== 0 ? this.state.userEvents.hosted.map(event => {
+                        return(<HostedEvent event={event} />)
+                    }) : <p>You have not created any events.</p> }
+                    <Link to="/create" className="dashButton" >Create Event</Link>
                 </div>
                 
                 <div>
                     <h2>Your Open Invitations</h2>
-                    {/* Need to get back:
-                    - Event Name
-                    - Event Date
-                    - Event Time
-                    - Event Location */}
+                    {this.state.hostedEvents.filter(event => {
+                        return(<OpenInvitations event={event} />)
+                    })}
                 </div>
                 
                 <div>

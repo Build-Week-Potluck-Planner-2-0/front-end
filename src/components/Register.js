@@ -20,7 +20,6 @@ const initialFormErrors = {
 const initialUsers = [];
 const initialDisabled = true;
 
-
 function Register(){
     const [users, setUsers] = useState(initialUsers);
     const [formValues, setFormValues] = useState(initialFormValues);
@@ -29,7 +28,7 @@ function Register(){
     const navigate = useNavigate();
 
     const registerUser = newUser => {
-        axios.post('https://bw-potluck-planner-2.herokuapp.com/api/auth/register', newUser)
+        axios.post(`https://bw-potluck-planner-2.herokuapp.com/api/auth/register`, newUser)
         .then(res => {
             console.log("Just registered: ", res.data)
             setUsers(res.data);

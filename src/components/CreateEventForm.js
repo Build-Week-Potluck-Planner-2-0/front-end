@@ -1,40 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
 
 export default function CreateEvent(){
 
-
-
     return(
-        // <div>
-        //     <h1>Create an event</h1>
-        //     <form id="createEventForm">
-        //         <label>Event title
-        //             <input 
-        //                 name='title'
-        //                 type='text'
-        //             />    
-        //         </label>
-        //         <label>Event Date
-        //             <input
-        //                 name='date'
-        //                 type='date'
-        //             />
-        //         </label>
-        //         <label>Event Time
-        //             <input
-        //                 name='time'
-        //                 type='time'
-        //             />
-        //         </label>
-        //         <label>Item
-        //             <input
-        //                 name='item'
-        //                 type='text'
-        //             />
-        //         </label>
-        //     </form>
-        // </div>
-        <div>
+        <StyledEvent>
             <h1>Create an event</h1>
             <form id="createEventForm" onSubmit={(e) => {
                 e.preventDefault()
@@ -77,7 +47,7 @@ export default function CreateEvent(){
                     const form = document.body.querySelector("#createEventForm");
 
                     const html = `
-                     <label>Event title
+                     <label>Item
                     <input 
                         name='item'
                         type='text'
@@ -87,6 +57,20 @@ export default function CreateEvent(){
                     form.insertAdjacentHTML("beforeend", html)
 
                 }}>Add Item</button>
-        </div>
+        </StyledEvent>
     )
 }
+const StyledEvent = styled.div`
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    
+    margin-top: 4%;
+    label{
+        margin: 1%;
+    }
+    input{
+        margin: 0.5%;
+    }
+`
