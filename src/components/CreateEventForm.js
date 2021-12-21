@@ -61,14 +61,15 @@ export default function CreateEvent(){
     )
 }
 const StyledEvent = styled.div`
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
     
     margin-top: 4%;
     label{
         margin: 1%;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+        
     }
     input{
         margin: 0.5%;

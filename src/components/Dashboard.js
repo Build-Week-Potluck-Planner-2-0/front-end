@@ -37,17 +37,17 @@ class Dashboard extends React.Component {
                 
                 <div>
                     <h2>You are Hosting</h2>
-                    {this.state.userEvents.hosted.length !== 0 ? this.state.userEvents.hosted.map(event => {
+                    {/* {this.state.userEvents.hosted.length !== 0 ? this.state.userEvents.hosted.map(event => {
                         return(<HostedEvent event={event} />)
-                    }) : <p>You have not created any events.</p> }
+                    }) : <p>You have not created any events.</p> } */}
                     <Link to="/create" className="dashButton" >Create Event</Link>
                 </div>
                 
                 <div>
                     <h2>Your Open Invitations</h2>
-                    {this.state.hostedEvents.filter(event => {
+                    {/* {this.state.hostedEvents.filter(event => {
                         return(<OpenInvitations event={event} />)
-                    })}
+                    })} */}
                 </div>
                 
                 <div>
