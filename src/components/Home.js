@@ -9,8 +9,8 @@ const Home = () => {
     <>
         <HomeSection>
             <div>
-                <h1>Perfect Potluck</h1>
-                <button>Create a Meal</button>
+                <h2>Perfect Potluck</h2>
+                <CreateMealButton>Create a Meal</CreateMealButton>
             </div>
         </HomeSection>
         <AboutSection >
@@ -20,7 +20,7 @@ const Home = () => {
             </div>
         </AboutSection>
         <ShopSection>
-            <h2>Our Plants</h2>
+            <h2>Our Offers</h2>
             <ContainerSection>
                 <FoodIMG>
                     <div>
@@ -29,14 +29,14 @@ const Home = () => {
                 </FoodIMG>                  
                 <TextSection>
                     <div>
-                        <h2>Food 2</h2>
+                        <h2>Uzbekistan Salad</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam rerum blanditiis voluptates est, ipsum odio repudiandae eligendi numquam esse autem beatae sequi natus, omnis, veritatis magnam atque iusto nesciunt similique.</p>
                         <button>LEARN MORE</button>
                     </div>
                 </TextSection>
                 <TextSection>
                     <div>
-                        <h2>Food 3</h2>
+                        <h2>Indian Curry Beef</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere voluptas nobis debitis inventore ratione quasi porro repudiandae, tempora mollitia doloremque aliquam vero accusantium maxime consequatur libero quas reprehenderit esse sint?</p>
                         <button>LEARN MORE</button>
                     </div>
@@ -54,7 +54,7 @@ const Home = () => {
                 </FoodIMG>                  
                 <TextSection>
                     <div>
-                        <h2>Food 4</h2>
+                        <h2>Pumpkin</h2>
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum perferendis architecto assumenda eligendi ea optio recusandae illo cum nam quis vitae, iure laboriosam quod minima maiores! Nihil doloribus error rem.</p>
                         <button>LEARN MORE</button>
                     </div>
@@ -68,22 +68,27 @@ const Home = () => {
 export default Home;
 
 const HomeSection= styled.div`
-    background-image:url(${header});
-    background-size:cover;
-    background-repeat:no-repeat;
-    background-color:#a82342;
-    height:90vh;
-    width: 100%;
-    
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    
-    text-align:center;
-    background-position: bottom;
-        button {
-            color:#266035;
-            border:2px solid #266035;
+background-image:url(${header});
+background-size:cover;
+background-repeat:no-repeat;
+background-color:#a82342;
+height:90vh;
+width: 100%;
+
+display:flex;
+justify-content: center;
+align-items: center;
+
+text-align:center;
+        h2{
+            font-size: 48px;             
+            color: rgb(255, 60, 0);
+        }
+        div {
+            position: fixed;
+            top: 10%;
+            left: 45%;
+            font-size: 24px;            
         }        
 `
 
@@ -92,11 +97,13 @@ const AboutSection = styled.div`
     display:flex;
     justify-content: flex-end;
     align-items:center;
+    padding:1%;  
         
 `
 const ShopSection = styled.div`
     padding-bottom:0;  
-    background-color:#4f9c5b;          
+    background-color:#4f9c5b;
+    padding:2%;            
 `
 const ContainerSection = styled.div`
     display:flex;    
@@ -114,6 +121,10 @@ const TextSection = styled.div`
     align-items: center;
     padding:6%;
     text-align:center; 
+        h2{
+            font-size: 36px;             
+           
+        }
         div {
             width:50%
         }  
@@ -122,3 +133,17 @@ const TextSection = styled.div`
             color:#fff;
         }    
 `
+
+const Button = styled.button`
+  color: palevioletred;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
+
+const CreateMealButton = styled(Button)`
+    color:#266035;
+    border:2px solid #266035;
+`;
