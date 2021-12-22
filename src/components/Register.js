@@ -4,7 +4,7 @@ import RegisterForm from './RegisterForm';
 import axios from 'axios';
 import * as yup from 'yup';
 import registrationSchema from './registrationSchema';
-
+ 
 const initialFormValues = {
     username: '',
     email: '',
