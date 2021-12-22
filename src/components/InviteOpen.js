@@ -5,7 +5,7 @@ function InviteOpen(props) {
 
     return(
         <div className="hostedEvent" >
-            <h3>{event}</h3>
+            <h3>{event.title}</h3>
         </div>
     )
 }
