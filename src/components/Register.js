@@ -4,7 +4,7 @@ import RegisterForm from './RegisterForm';
 import axios from 'axios';
 import * as yup from 'yup';
 import registrationSchema from './registrationSchema';
- 
+import { StyledFormWrapper } from './StyledForm'
 const initialFormValues = {
     username: '',
     email: '',
@@ -70,12 +70,16 @@ function Register(){
     
 
     return(
-        <>
-            <h1>Register below</h1>
-            <RegisterForm values={formValues} change={inputChange} submit={formSubmit} disabled={disabled} errors={formErrors}/>
-        </>
+        <StyledFormWrapper>
+            <div>
+                <h1>Register below</h1>
+                <RegisterForm values={formValues} change={inputChange} submit={formSubmit} disabled={disabled} errors={formErrors}/>
+            </div>
+            
+        </StyledFormWrapper>
     )
 }
+
 
 
 export default Register;
