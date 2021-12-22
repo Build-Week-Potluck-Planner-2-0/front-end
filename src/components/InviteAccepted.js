@@ -4,8 +4,7 @@ function InviteAccepted(props) {
     const { event } = props;
     const userId = localStorage.getItem("userId");
 
-    let yourItem = event.items.filter(item => item.providedBy === userId);
-    console.log("Item you're bringing to your accepted event: ", yourItem);
+    let yourItem = event.items.filter(item => item.providedBy === Number(userId));
 
     return(
         <div className="hostedEvent" >
@@ -14,7 +13,7 @@ function InviteAccepted(props) {
             <p>Time: {event.time}</p>
             <p>Location: {event.location}</p>
             <p>Description: {event.description}</p>
-            <p>You're Bringing: {yourItem.name}</p>
+            <p>You're Bringing: {yourItem[0].name}</p>
             <button>EDIT</button>
         </div>
     )

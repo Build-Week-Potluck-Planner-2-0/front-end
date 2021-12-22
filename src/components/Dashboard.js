@@ -13,10 +13,8 @@ class Dashboard extends React.Component {
     };
     
     componentDidMount() {
-        const token = localStorage.getItem("token");
         const userId = localStorage.getItem("userId");
         
-        // Pulling initial userData (all events, your hosted, and invites)
         axiosWithAuth()
             .get(`potlucks/${userId}/potlucks`)
             .then(res => {
@@ -52,19 +50,10 @@ class Dashboard extends React.Component {
                 <div>
                     <h2>Your Open Invitations</h2>
                     {this.state.receivedInvites.map(event => {
-                        event.invites.map(invite => {
-                            if(invite.to.toString() === userId) {
-                                console.log("userId ", userId);
-                                console.log("Invite to: ", invite.to);
-                                return(console.log("It was equal"));
-                                
-                            } else {
-                                return(console.log("something wrong"))
-                            }
-                        });
-                        
+                        const pending = event.invites.filter(invite => (invite.status === "pending" && invite.to === Number(userId)));
+                        console.log("Pending: ", pending);
 
-                        if((event.invites.filter(invite => invite.to.toString() === userId && invite.status === "pending"))){
+                        if(pending.length > 0) {
                             return(<InviteOpen event={event} key={event.potluck_id} />)
                         }
                     })}
@@ -73,7 +62,10 @@ class Dashboard extends React.Component {
                 <div>
                     <h2>Your Accepted Events</h2>
                     {this.state.receivedInvites.map(event => {
-                        if((event.invites.filter(invite => invite.to === userId && invite.status === "attending"))){
+                        const attending = event.invites.filter(invite => (invite.status === "attending" && invite.to === Number(userId) ));
+                        console.log("Attending: ", attending);
+
+                        if(attending.length > 0) {
                             return(<InviteAccepted event={event} key={event.potluck_id} />)
                         }
                     })}
