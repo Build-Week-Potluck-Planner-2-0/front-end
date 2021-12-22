@@ -13,10 +13,8 @@ class Dashboard extends React.Component {
     };
     
     componentDidMount() {
-        const token = localStorage.getItem("token");
         const userId = localStorage.getItem("userId");
         
-        // Pulling initial userData (all events, your hosted, and invites)
         axiosWithAuth()
             .get(`potlucks/${userId}/potlucks`)
             .then(res => {
@@ -45,24 +43,31 @@ class Dashboard extends React.Component {
                     {this.state.hostedEvents.length !== 0 ? this.state.hostedEvents.map(event => {
                         return(<HostedEvent event={event} key={event.potluck_id} />)
                     }) : <p>You have not created any events.</p> }
-                    <Link to="/create" id="createEventButton" >Create Event</Link>
+                    <Link to="/create" id="createEventButton" >Create New Event</Link>
                 </div>
-                
+
+
                 <div>
                     <h2>Your Open Invitations</h2>
                     {this.state.receivedInvites.map(event => {
-                        event.invites.filter(invite => invite.to === userId && invite.status === "pending").map(event => {
-                            return(<InviteOpen event={event}/>)
-                        })
+                        const pending = event.invites.filter(invite => (invite.status === "pending" && invite.to === Number(userId)));
+                        console.log("Pending: ", pending);
+
+                        if(pending.length > 0) {
+                            return(<InviteOpen event={event} key={event.potluck_id} />)
+                        }
                     })}
                 </div>
                 
                 <div>
                     <h2>Your Accepted Events</h2>
                     {this.state.receivedInvites.map(event => {
-                        event.invites.filter(invite => invite.to === userId && invite.status === "attending").map(event => {
-                            return(<InviteAccepted event={event}/>)
-                        })
+                        const attending = event.invites.filter(invite => (invite.status === "attending" && invite.to === Number(userId) ));
+                        console.log("Attending: ", attending);
+
+                        if(attending.length > 0) {
+                            return(<InviteAccepted event={event} key={event.potluck_id} />)
+                        }
                     })}
                 </div>
             </StyledDash>
@@ -74,12 +79,12 @@ export default Dashboard;
 
 const StyledDash = styled.div`
 #createEventButton {
-    background-color: lightgrey;
+    background-color: green;
     padding: .5rem;
     color: white;
     border-radius: 5px;
     &:hover {
-        background-color: grey;
+        background-color: darkgreen;
     }
 }
 `

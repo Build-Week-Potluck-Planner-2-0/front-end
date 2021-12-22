@@ -6,11 +6,6 @@ const loginSchema = yup.object().shape({
         .trim()
         .required('Username is required')
         .min(3, 'Username must be at least 3 characters'),
-    email: yup
-        .string()
-        .trim()
-        .required('Email is required')
-        .email('Proper email format is required'),
     password: yup
         .string()
         .trim()

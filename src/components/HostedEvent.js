@@ -21,7 +21,6 @@ function HostedEvent(props) {
             <p>Time: {event.time}</p>
             <p>Location: {event.location}</p>
             <p>Description: {event.description}</p>
-            <p>!!!!! DONT CLICK THE DELETE BUTTON YET!!!!!</p>
             <button onClick={handleDelete} >DELETE EVENT</button>
         </div>
     )
