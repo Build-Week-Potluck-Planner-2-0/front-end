@@ -9,7 +9,7 @@ const Home = () => {
     <>
         <HomeSection>
             <div>
-                <h2>Perfect Potluck</h2>
+                <h2>did everyone bring mac and cheese?</h2>
                 <CreateMealButton>Create a Meal</CreateMealButton>
             </div>
         </HomeSection>
@@ -20,7 +20,7 @@ const Home = () => {
             </div>
         </AboutSection>
         <ShopSection>
-            <h2>Our Offers</h2>
+            <h2>Proven Recipes for Group Meals</h2>
             <ContainerSection>
                 <FoodIMG>
                     <div>
@@ -54,7 +54,7 @@ const Home = () => {
                 </FoodIMG>                  
                 <TextSection>
                     <div>
-                        <h2>Pumpkin</h2>
+                        <h2>USA Pumpkin</h2>
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum perferendis architecto assumenda eligendi ea optio recusandae illo cum nam quis vitae, iure laboriosam quod minima maiores! Nihil doloribus error rem.</p>
                         <button>LEARN MORE</button>
                     </div>
@@ -81,13 +81,14 @@ align-items: center;
 
 text-align:center;
         h2{
+            background-color:yellow;
             font-size: 48px;             
             color: rgb(255, 60, 0);
         }
         div {
             position: fixed;
             top: 10%;
-            left: 45%;
+            left: 30%;
             font-size: 24px;            
         }        
 `
@@ -103,7 +104,12 @@ const AboutSection = styled.div`
 const ShopSection = styled.div`
     padding-bottom:0;  
     background-color:#4f9c5b;
-    padding:2%;            
+    padding:2%;  
+    h2{
+        
+        font-size: 36px;             
+        color: rgb(255, 60, 0);
+    }          
 `
 const ContainerSection = styled.div`
     display:flex;    
@@ -129,6 +135,9 @@ const TextSection = styled.div`
             width:50%
         }  
         button{
+            font-size: 1em;
+            margin: 1em;
+            padding: 0.25em 1em;
             background-color:#266035;
             color:#fff;
         }    
