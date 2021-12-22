@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
+import { StyledForm } from './StyledForm'
 export default function RegisterForm(props){
 
     const { values, change, submit, disabled, errors } = props;
@@ -16,9 +15,9 @@ export default function RegisterForm(props){
     }
 
     return(
-        <StyledRegForm>
+        <StyledForm>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div class="errors">
                     <h3>{errors.username}</h3>
                     <h3>{errors.email}</h3>
                     <h3>{errors.password}</h3>
@@ -52,17 +51,8 @@ export default function RegisterForm(props){
                 </label>
                 <button disabled={disabled}>Register</button>
             </form>
-        </StyledRegForm>
+        </StyledForm>
 
     )
 }
 
-const StyledRegForm = styled.div`
-    margin-top: 4%;
-    label{
-        margin: 1%;
-    }
-    input{
-        margin: 0.5%;
-    }
-`

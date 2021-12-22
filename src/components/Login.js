@@ -4,6 +4,7 @@ import LoginForm from './LoginForm';
 import axios from 'axios';
 import * as yup from 'yup';
 import loginSchema from './loginSchema';
+import { StyledFormWrapper } from './StyledForm';
 
 const initialFormValues = {
     username: '',
@@ -74,10 +75,12 @@ function Login(){
     }, [formValues])
 
     return(
-        <>
-            <h1>Login below</h1>
-            <LoginForm values={formValues} change={inputChange} submit={formSubmit} disabled={disabled} errors={formErrors}/>
-        </>
+        <StyledFormWrapper>
+            <div>
+                <h1>Login below</h1>
+                <LoginForm values={formValues} change={inputChange} submit={formSubmit} disabled={disabled} errors={formErrors}/>
+            </div>
+        </StyledFormWrapper>
     )
 }
 
