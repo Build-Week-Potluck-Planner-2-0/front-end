@@ -18,12 +18,12 @@ class Dashboard extends React.Component {
         
         // Pulling initial userData (all events, your hosted, and invites)
         axiosWithAuth()
-            .get(`/${userId}/potlucks`)
+            .get(`potlucks/${userId}/potlucks`)
             .then(res => {
-                console.log("Getting User Data:", res);
+                console.log("Getting User Data:", res.data);
                 this.setState({
                     hostedEvents: res.data.hosted,
-                    receivedInvites: res.data.InvitedTo
+                    receivedInvites: res.data.invitedTo
                 });
             })
             .catch(err => {
@@ -32,6 +32,8 @@ class Dashboard extends React.Component {
     }
 
     render() {
+        const userId = localStorage.getItem("userId");
+
         return(
             <StyledDash>
                 <header>
@@ -40,28 +42,28 @@ class Dashboard extends React.Component {
                 
                 <div>
                     <h2>You are Hosting</h2>
-                    {/* {this.state.hostedEvents.length !== 0 ? this.state.hostedEvents.map(event => {
-                        return(<HostedEvent event={event} />)
-                    }) : <p>You have not created any events.</p> } */}
-                    <Link to="/create" className="dashButton" >Create Event</Link>
+                    {this.state.hostedEvents.length !== 0 ? this.state.hostedEvents.map(event => {
+                        return(<HostedEvent event={event} key={event.potluck_id} />)
+                    }) : <p>You have not created any events.</p> }
+                    <Link to="/create" id="createEventButton" >Create Event</Link>
                 </div>
                 
                 <div>
                     <h2>Your Open Invitations</h2>
-                    {/* {this.state.receivedInvites.map(event => {
-                        event.invites.filter(invite => invite.to === this.userId && invite.status === "pending").map(event => {
+                    {this.state.receivedInvites.map(event => {
+                        event.invites.filter(invite => invite.to === userId && invite.status === "pending").map(event => {
                             return(<InviteOpen event={event}/>)
                         })
-                    })} */}
+                    })}
                 </div>
                 
                 <div>
                     <h2>Your Accepted Events</h2>
-                    {/* {this.state.receivedInvites.map(event => {
-                        event.invites.filter(invite => invite.to === this.userId && invite.status === "accepted").map(event => {
+                    {this.state.receivedInvites.map(event => {
+                        event.invites.filter(invite => invite.to === userId && invite.status === "attending").map(event => {
                             return(<InviteAccepted event={event}/>)
                         })
-                    })} */}
+                    })}
                 </div>
             </StyledDash>
         )
@@ -71,6 +73,15 @@ class Dashboard extends React.Component {
 export default Dashboard;
 
 const StyledDash = styled.div`
+#createEventButton {
+    background-color: lightgrey;
+    padding: .5rem;
+    color: white;
+    border-radius: 5px;
+    &:hover {
+        background-color: grey;
+    }
+}
 `
 
 
