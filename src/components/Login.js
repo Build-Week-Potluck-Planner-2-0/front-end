@@ -7,13 +7,11 @@ import loginSchema from './loginSchema';
 
 const initialFormValues = {
     username: '',
-    email: '',
     password: '',
 }
 
 const initialFormErrors = {
     username: '',
-    email: '',
     password: '',
 }
   
@@ -63,7 +61,6 @@ function Login(){
     const formSubmit = () => {
         const newUser = {
         username: formValues.username.trim(),
-        email: formValues.email.trim(),
         password: formValues.password.trim(),
         }
         loginUser(newUser);

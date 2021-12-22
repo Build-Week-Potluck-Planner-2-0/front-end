@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import CreateEventForm from './CreateEventForm';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const initialFormValues = {
     title: '',
+    location:'',
+    description:'',
     date: '',
     time: '',
     item: '',
+    items: [],
+    guest: '',
+    invites: []
 }
 
 // const initialFormErrors = {
@@ -29,7 +34,9 @@ function CreateEvent(){
     //https://bw-potluck-planner-2.herokuapp.com/api/${userId}/potluck`
 
     const postEvent = newEvent => {
-        axios.post(`https://reqres.in/api/orders`, newEvent)
+        console.log("trying to post");
+        axiosWithAuth()
+        .post(`/potlucks/${userId}`, newEvent)
         .then(res => {
             console.log("Just made an event: ", res.data)
             setEvent(res.data);
@@ -56,10 +63,15 @@ function CreateEvent(){
     const formSubmit = () => {
         const newEvent = {
         title: formValues.title.trim(),
+        location: formValues.location.trim(),
+        description: formValues.description.trim(),
         date: formValues.date,
         time: formValues.time,
         item: formValues.item.trim(),
+        items: formValues.items,
+        invites: formValues.invites,
         }
+        console.log("NewEvent: ", newEvent);
         postEvent(newEvent);
     }
 

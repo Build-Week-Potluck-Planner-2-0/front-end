@@ -45,24 +45,37 @@ class Dashboard extends React.Component {
                     {this.state.hostedEvents.length !== 0 ? this.state.hostedEvents.map(event => {
                         return(<HostedEvent event={event} key={event.potluck_id} />)
                     }) : <p>You have not created any events.</p> }
-                    <Link to="/create" id="createEventButton" >Create Event</Link>
+                    <Link to="/create" id="createEventButton" >Create New Event</Link>
                 </div>
-                
+
+
                 <div>
                     <h2>Your Open Invitations</h2>
                     {this.state.receivedInvites.map(event => {
-                        event.invites.filter(invite => invite.to === userId && invite.status === "pending").map(event => {
-                            return(<InviteOpen event={event}/>)
-                        })
+                        event.invites.map(invite => {
+                            if(invite.to.toString() === userId) {
+                                console.log("userId ", userId);
+                                console.log("Invite to: ", invite.to);
+                                return(console.log("It was equal"));
+                                
+                            } else {
+                                return(console.log("something wrong"))
+                            }
+                        });
+                        
+
+                        if((event.invites.filter(invite => invite.to.toString() === userId && invite.status === "pending"))){
+                            return(<InviteOpen event={event} key={event.potluck_id} />)
+                        }
                     })}
                 </div>
                 
                 <div>
                     <h2>Your Accepted Events</h2>
                     {this.state.receivedInvites.map(event => {
-                        event.invites.filter(invite => invite.to === userId && invite.status === "attending").map(event => {
-                            return(<InviteAccepted event={event}/>)
-                        })
+                        if((event.invites.filter(invite => invite.to === userId && invite.status === "attending"))){
+                            return(<InviteAccepted event={event} key={event.potluck_id} />)
+                        }
                     })}
                 </div>
             </StyledDash>
@@ -74,12 +87,12 @@ export default Dashboard;
 
 const StyledDash = styled.div`
 #createEventButton {
-    background-color: lightgrey;
+    background-color: green;
     padding: .5rem;
     color: white;
     border-radius: 5px;
     &:hover {
-        background-color: grey;
+        background-color: darkgreen;
     }
 }
 `
