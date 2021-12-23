@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { StyledForm } from './StyledForm';
 
 export default function LoginForm(props){
 
@@ -16,9 +17,9 @@ export default function LoginForm(props){
     }
 
     return(
-        <StyledLoginForm>
+        <StyledForm>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div class="errors">
                     <h3>{errors.username}</h3>
                     <h3>{errors.password}</h3>
                 </div>
@@ -42,17 +43,8 @@ export default function LoginForm(props){
                 </label>
                 <button disabled={disabled}>Login</button>
             </form>
-        </StyledLoginForm>
+        </StyledForm>
 
     )
 }
 
-const StyledLoginForm = styled.div`
-    margin-top: 4%;
-    label{
-        margin: 1%;
-    }
-    input{
-        margin: 0.5%;
-    }
-`
