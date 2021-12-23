@@ -59,7 +59,6 @@ export default function Dashboard() {
 
     return(
         <StyledDash>
-              {  console.log(state)}
                 <header>
                     <h1>DASHBOARD</h1>
                 </header>
@@ -76,12 +75,10 @@ export default function Dashboard() {
                     <h2>Your Open Invitations</h2>
                     {state.receivedInvites.map(event => {
                         const pending = event.invites.filter(invite => (invite.status === "pending" && invite.to === Number(state.userId)));
-                        if(pending.length > 0) {
-                            return(<InviteOpen event={event} handleInviteAccept={handleInviteAccept} key={event.potluck_id} />)
-                        } else {
-                            return(<h3 key="noInvitations" >You have no pending invitations</h3>)
-                        }
-                    })}
+
+                        console.log("Pending: ", pending);
+
+                        })}
                 </div>
                 
                 <div>
