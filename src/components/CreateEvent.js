@@ -75,7 +75,7 @@ function CreateEvent(){
         invites: formValues.invites,
         }
         postEvent(newEvent);
-        // navigate('/dashboard');
+        navigate('/dashboard');
     }
 
     // useEffect(() => {

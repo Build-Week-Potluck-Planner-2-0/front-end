@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { StyledForm } from './StyledForm';
 
 export default function LoginForm(props){
@@ -19,7 +18,7 @@ export default function LoginForm(props){
     return(
         <StyledForm>
             <form onSubmit={handleSubmit}>
-                <div class="errors">
+                <div className="errors">
                     <h3>{errors.username}</h3>
                     <h3>{errors.password}</h3>
                 </div>

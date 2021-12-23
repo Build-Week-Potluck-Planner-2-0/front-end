@@ -11,8 +11,11 @@ export default function Dashboard() {
     const [state, setState ] = useState({
         hostedEvents: [],
         receivedInvites: [],
-        userId: localStorage.getItem("userId")
+        userId: localStorage.getItem("userId"),
     })
+
+    const pendingInvites = getPendingInvites(state.receivedInvites);
+    const attendingInvites = getAttendingInvites(state.receivedInvites);
 
     useEffect(() => {
         axiosWithAuth()
@@ -29,36 +32,42 @@ export default function Dashboard() {
         })
      }, [])
 
-     const handleInviteAccept = (event) => {
-       const [invitedToEvent] = event.invites.filter(invite => invite.to === +state.userId);
 
-       const allOtherInvites = event.invites.filter(invite => invite.invite_id !== invitedToEvent.invite_id)
+     function getPendingInvites (receivedInvites)  {
+        let pendingInvites = [];
+         for(const event of receivedInvites ){
+            const pending = event.invites.filter(invite => (invite.status === "pending" && invite.to === +state.userId));
 
+            if(pending.length > 0){
+                pendingInvites.push(event);
+            }
+         }
 
-       invitedToEvent.status = "attending";
-
-        event.invites = [...allOtherInvites, invitedToEvent];
-
-       axiosWithAuth()
-       .put(`potlucks/${invitedToEvent.potluck_id}/${invitedToEvent.from}`, event)
-       .then(res => {
-
-           setState({
-               ...state,
-               hostedEvents: res.data.hosted,
-               receivedInvites: res.data.invitedTo
-           });
-       })
-       .catch(err => {
-           console.log(err);
-       })
-
-
+         return pendingInvites;
      }
+
+     function getAttendingInvites (receivedInvites)  {
+        let attendingInvites = [];
+         for(const event of receivedInvites ){
+            const attending = event.invites.filter(invite => (invite.status === "attending" && invite.to === +state.userId));
+
+            if(attending.length > 0){
+                attendingInvites.push(event);
+            }
+         }
+
+         return attendingInvites;
+     }
+
+     
+
+     
     
 
     return(
         <StyledDash>
+            {console.log(state, "ALL STATE FROM DASH")}
+
                 <header>
                     <h1>DASHBOARD</h1>
                 </header>
@@ -73,24 +82,24 @@ export default function Dashboard() {
 
                 <div>
                     <h2>Your Open Invitations</h2>
-                    {state.receivedInvites.map(event => {
-                        const pending = event.invites.filter(invite => (invite.status === "pending" && invite.to === Number(state.userId)));
 
-                        console.log("Pending: ", pending);
+                    {pendingInvites.length > 0 ? 
 
-                        })}
+                    pendingInvites.map(invite => <InviteOpen event={invite} state={state} setState={setState} key={invite.potluck_id} />)
+
+                    : <h3 >You have no pending invitations</h3>}
                 </div>
                 
                 <div>
                     <h2>Your Accepted Events</h2>
-                    {state.receivedInvites.map(event => {
-                        const attending = event.invites.filter(invite => (invite.status === "attending" && invite.to === Number(state.userId) ));
-                        if(attending.length > 0) {
-                            return(<InviteAccepted event={event} key={event.potluck_id} />)
-                        } else {
-                            return(<h3 key="noAcceptedInvitations" >You have accepted no invitations</h3>)
-                        }
-                    })}
+
+
+                    {attendingInvites.length > 0 ? 
+
+attendingInvites.map(invite => <InviteAccepted event={invite} key={invite.potluck_id} />)
+: <h3 >You have accepted no accepted invitations</h3>}
+
+
                 </div>
             </StyledDash>
         )

@@ -14,7 +14,7 @@ function InviteAccepted(props) {
             <p>Location: {event.location}</p>
             <p>Description: {event.description}</p>
             <p>You're Bringing: {yourItem?.name}</p>
-            <button>EDIT</button>
+            {/* <button>EDIT</button> */}  {/* STRETCH */}
         </div>
     )
 }
