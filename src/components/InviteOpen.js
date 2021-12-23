@@ -1,7 +1,7 @@
 import React from 'react';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
-function InviteOpen(props) {
-    const { event } = props;
+function InviteOpen({event, handleInviteAccept}) {
 
     return(
         <div className="hostedEvent" >
@@ -10,7 +10,9 @@ function InviteOpen(props) {
             <p>Time: {event.time}</p>
             <p>Location: {event.location}</p>
             <p>Description: {event.description}</p>
-            <button>ACCEPT</button>
+            <button onClick={() => {
+                handleInviteAccept(event);
+            }} >ACCEPT</button>
             <button>DECLINE</button>
         </div>
     )

@@ -38,7 +38,7 @@ function Login(){
             setUser(res.data);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("userId", res.data.user_id);
-            localStorage.setItem("userId", res.data.user_id);
+            localStorage.setItem("username", res.data.username);
             navigate("/dashboard");
         }).catch(err => console.error(err))
         .finally(() => setFormValues(initialFormValues))

@@ -32,9 +32,9 @@ function Register(){
         .then(res => {
             console.log("Just registered: ", res.data)
             setUsers(res.data);
-            const { token, user_id } = res.data;
-            localStorage.setItem("token", token);
-            localStorage.setItem("userId", user_id);
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("userId", res.data.user_id);
+            localStorage.setItem("username", res.data.username);
             navigate("/dashboard");
         }).catch(err => console.error(err))
         .finally(() => setFormValues(initialFormValues))

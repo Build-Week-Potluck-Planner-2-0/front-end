@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axiosWithAuth from '../utils/axiosWithAuth';
@@ -6,76 +6,98 @@ import HostedEvent from './HostedEvent';
 import InviteOpen from './InviteOpen';
 import InviteAccepted from './InviteAccepted';
 
-class Dashboard extends React.Component {
-    state = {
+export default function Dashboard() {
+
+    const [state, setState ] = useState({
         hostedEvents: [],
-        receivedInvites: []        
-    };
-    
-    componentDidMount() {
-        const userId = localStorage.getItem("userId");
-        
+        receivedInvites: [],
+        userId: localStorage.getItem("userId")
+    })
+
+    useEffect(() => {
         axiosWithAuth()
-            .get(`potlucks/${userId}/potlucks`)
-            .then(res => {
-                console.log("Getting User Data:", res.data);
-                this.setState({
-                    hostedEvents: res.data.hosted,
-                    receivedInvites: res.data.invitedTo
-                });
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }
+        .get(`potlucks/${state.userId}/potlucks`)
+        .then(res => {
+            setState({
+                ...state,
+                hostedEvents: res.data.hosted,
+                receivedInvites: res.data.invitedTo
+            });
+        })
+        .catch(err => {
+            console.error(err);
+        })
+     }, [])
 
-    render() {
-        const userId = localStorage.getItem("userId");
+     const handleInviteAccept = (event) => {
+       const [invitedToEvent] = event.invites.filter(invite => invite.to === +state.userId);
 
-        return(
-            <StyledDash>
+       const allOtherInvites = event.invites.filter(invite => invite.invite_id !== invitedToEvent.invite_id)
+
+
+       invitedToEvent.status = "attending";
+
+        event.invites = [...allOtherInvites, invitedToEvent];
+
+       axiosWithAuth()
+       .put(`potlucks/${invitedToEvent.potluck_id}/${invitedToEvent.from}`, event)
+       .then(res => {
+
+           setState({
+               ...state,
+               hostedEvents: res.data.hosted,
+               receivedInvites: res.data.invitedTo
+           });
+       })
+       .catch(err => {
+           console.log(err);
+       })
+
+
+     }
+    
+
+    return(
+        <StyledDash>
+              {  console.log(state)}
                 <header>
                     <h1>DASHBOARD</h1>
                 </header>
                 
                 <div>
                     <h2>You are Hosting</h2>
-                    {this.state.hostedEvents.length !== 0 ? this.state.hostedEvents.map(event => {
-                        return(<HostedEvent event={event} key={event.potluck_id} />)
+                    {state.hostedEvents.length !== 0 ? state.hostedEvents.map(event => {
+                        return(<HostedEvent state={state} setHostedState={setState} event={event} key={event.potluck_id} />)
                     }) : <p>You have not created any events.</p> }
                     <Link to="/create" id="createEventButton" >Create New Event</Link>
                 </div>
 
-
                 <div>
                     <h2>Your Open Invitations</h2>
-                    {this.state.receivedInvites.map(event => {
-                        const pending = event.invites.filter(invite => (invite.status === "pending" && invite.to === Number(userId)));
-                        console.log("Pending: ", pending);
-
+                    {state.receivedInvites.map(event => {
+                        const pending = event.invites.filter(invite => (invite.status === "pending" && invite.to === Number(state.userId)));
                         if(pending.length > 0) {
-                            return(<InviteOpen event={event} key={event.potluck_id} />)
+                            return(<InviteOpen event={event} handleInviteAccept={handleInviteAccept} key={event.potluck_id} />)
+                        } else {
+                            return(<h3 key="noInvitations" >You have no pending invitations</h3>)
                         }
                     })}
                 </div>
                 
                 <div>
                     <h2>Your Accepted Events</h2>
-                    {this.state.receivedInvites.map(event => {
-                        const attending = event.invites.filter(invite => (invite.status === "attending" && invite.to === Number(userId) ));
-                        console.log("Attending: ", attending);
-
+                    {state.receivedInvites.map(event => {
+                        const attending = event.invites.filter(invite => (invite.status === "attending" && invite.to === Number(state.userId) ));
                         if(attending.length > 0) {
                             return(<InviteAccepted event={event} key={event.potluck_id} />)
+                        } else {
+                            return(<h3 key="noAcceptedInvitations" >You have accepted no invitations</h3>)
                         }
                     })}
                 </div>
             </StyledDash>
         )
-    }
 }
-
-export default Dashboard;
 
 const StyledDash = styled.div`
 #createEventButton {
