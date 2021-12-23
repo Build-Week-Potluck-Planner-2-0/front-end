@@ -1,3 +1,9 @@
+We have been using Live-Share, so many of our changes weer made in a single branch - all team members contributed to shared branches!
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
