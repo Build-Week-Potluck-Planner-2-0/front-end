@@ -46,7 +46,7 @@ export default function CreateEventForm(props){
 
             setOptions(newOptions);
 
-        }).catch(err => console.error(err))
+        }).catch(err => console.error(err.message))
         
     }, [])
 

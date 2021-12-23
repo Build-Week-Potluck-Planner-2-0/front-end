@@ -17,7 +17,7 @@ export default function RegisterForm(props){
     return(
         <StyledForm>
             <form onSubmit={handleSubmit}>
-                <div class="errors">
+                <div className="errors">
                     <h3>{errors.username}</h3>
                     <h3>{errors.email}</h3>
                     <h3>{errors.password}</h3>
