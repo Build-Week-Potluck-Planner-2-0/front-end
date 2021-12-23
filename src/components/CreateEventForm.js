@@ -13,7 +13,8 @@ const initialState = {
         status: "pending",
         to_username: "",
         from_username: "", 
-        from: ""
+        from: "",
+        to: ""
     }
 }
 

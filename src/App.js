@@ -13,6 +13,7 @@ import CreateEvent from './components/CreateEvent'
 
 
 function App() {
+  const isLoggedIn = localStorage.getItem("token");
 
   return (
     <div className="App">

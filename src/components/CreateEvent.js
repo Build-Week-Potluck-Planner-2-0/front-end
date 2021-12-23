@@ -37,15 +37,15 @@ function CreateEvent(){
     //https://bw-potluck-planner-2.herokuapp.com/api/${userId}/potluck`
 
     const postEvent = newEvent => {
-        console.log("trying to post", newEvent);
-        // axiosWithAuth()
-        // .post(`/potlucks/${userId}`, newEvent)
-        // .then(res => {
-        //     console.log("Just made an event: ", res.data)
-        //     setEvent(res.data);
+
+        axiosWithAuth()
+        .post(`/potlucks/${userId}`, newEvent)
+        .then(res => {
+            console.log("Just made an event: ", res.data)
+            // setEvent(res.data);
             
-        // }).catch(err => console.error(err))
-        // .finally(() => setFormValues(initialFormValues))
+        }).catch(err => console.error(err))
+        .finally(() => setFormValues(initialFormValues))
     }
 
     // const validate = (name, value) => {
@@ -74,9 +74,8 @@ function CreateEvent(){
         items: formValues.items,
         invites: formValues.invites,
         }
-        console.log("NewEvent: ", newEvent);
         postEvent(newEvent);
-        navigate('/dashboard');
+        // navigate('/dashboard');
     }
 
     // useEffect(() => {
