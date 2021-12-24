@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Navbar({loggedIn, setLoggedIn}) {
@@ -9,14 +9,16 @@ function Navbar({loggedIn, setLoggedIn}) {
         <StyledNav>
             <a href='/'><h4>POTLUCK PLANNER</h4></a>
             <nav id='navLinks'>
-                <Link to='/'>HOME</Link>
-                {!loggedIn && <Link to='/login'>LOGIN</Link>}
-                {!loggedIn && <Link to='/register'>REGISTER</Link>}
-                {loggedIn && <Link to='/dashboard'>DASHBOARD</Link>}
-                {loggedIn && <Link to='/' onClick={() => {
+                <NavLink to='/' activeStyle={{
+                    "text-shadow": "5px 5px red"
+                    }} >HOME</NavLink>
+                {!loggedIn && <NavLink to='/login' >LOGIN</NavLink>}
+                {!loggedIn && <NavLink to='/register' >REGISTER</NavLink>}
+                {loggedIn && <NavLink exact to='/dashboard' >DASHBOARD</NavLink>}
+                {loggedIn && <NavLink to='/' onClick={() => {
                     setLoggedIn(false);
                     localStorage.clear();
-                }}>LOGOUT</Link>}
+                }}>LOGOUT</NavLink>}
             </nav>
         </StyledNav>
     )
@@ -41,6 +43,9 @@ const StyledNav = styled.div`
         text-shadow: 2px 2px red;
         &:hover {
             text-shadow: 5px 5px red;
+        }
+        &.active {
+            text-shadow: 3px 3px red;
         }
     }
 

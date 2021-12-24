@@ -6,9 +6,9 @@ export const StyledEvent = styled.div`
     text-align: center;
     border-radius: 5px;
     margin: 5%;
-    height: 200px;
+    /* height: 200px; */
     width: 40%;
-    padding-top: 3%;
+    padding: 2% 1%;
     h3{
         font-weight: bold;
         font-size: 2rem;

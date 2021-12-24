@@ -9,7 +9,7 @@ const Home = () => {
     <ContainerDiv>
         <HomeSection>
             <div>
-                <h2>Potluck Planner!</h2>
+                <h2 id="mainHeader">Potluck Planner!</h2>
             </div>
         </HomeSection>
         <AboutSection >
@@ -67,6 +67,12 @@ const Home = () => {
 export default Home;
 
 const ContainerDiv = styled.div`
+#mainHeader {
+    color: white;
+    font-weight: bold;
+    font-size: 8rem;
+    text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;
+}
     
 `
 
@@ -84,11 +90,7 @@ text-align:center;
         h2{
             font-size: 48px;             
             color: #266035;
-        } 
-        div {
-            position: fixed;
-            top: 10%;           
-        }       
+        }    
 `
 
 const AboutSection = styled.div`    
@@ -106,7 +108,8 @@ const ShopSection = styled.div`
     h2{
         
         font-size: 36px;             
-        color: rgb(255, 60, 0);
+        color: white;
+
     }          
 `
 const ContainerSection = styled.div`
