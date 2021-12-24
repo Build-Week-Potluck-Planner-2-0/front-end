@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyledEvent } from './StyledEvent';
 
 function InviteAccepted(props) {
     const { event } = props;
@@ -7,7 +8,7 @@ function InviteAccepted(props) {
     let [yourItem] = event.items.filter(item => item.providedBy === Number(userId));
 
     return(
-        <div className="hostedEvent" >
+        <StyledEvent className="hostedEvent" >
             <h3>{event.title}</h3>
             <p>Date: {event.date}</p>
             <p>Time: {event.time}</p>
@@ -15,7 +16,7 @@ function InviteAccepted(props) {
             <p>Description: {event.description}</p>
             <p>You're Bringing: {yourItem?.name}</p>
             {/* <button>EDIT</button> */}  {/* STRETCH */}
-        </div>
+        </StyledEvent>
     )
 }
 

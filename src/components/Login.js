@@ -19,7 +19,7 @@ const initialFormErrors = {
 const initialUser = [];
 const initialDisabled = true;
 
-function Login(){
+function Login({setLoggedIn}){
 
     const [users, setUser] = useState(initialUser);
     const [formValues, setFormValues] = useState(initialFormValues);
@@ -34,14 +34,19 @@ function Login(){
     const loginUser = newUser => {
         axios.post(`https://bw-potluck-planner-2.herokuapp.com/api/auth/login`, newUser)
         .then(res => {
-            console.log("Just logged in: ", res.data)
             setUser(res.data);
+
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("userId", res.data.user_id);
             localStorage.setItem("username", res.data.username);
-            navigate("/dashboard");
+
         }).catch(err => console.error(err))
-        .finally(() => setFormValues(initialFormValues))
+        .finally(() => {
+            
+            setLoggedIn(true);
+            navigate("/dashboard");
+            setFormValues(initialFormValues)
+        })
     }
 
     const validate = (name, value) => {
