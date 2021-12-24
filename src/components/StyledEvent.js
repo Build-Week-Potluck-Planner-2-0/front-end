@@ -7,11 +7,12 @@ export const StyledEvent = styled.div`
     border-radius: 5px;
     margin: 5%;
     /* height: 200px; */
-    width: 40%;
+    min-width: 30%;
     padding: 2% 1%;
     h3{
         font-weight: bold;
         font-size: 2rem;
         margin-bottom: 2%;
     }
+    height: 150px;
 `
