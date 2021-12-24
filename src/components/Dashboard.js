@@ -86,7 +86,7 @@ export default function Dashboard() {
 
                         pendingInvites.map(invite => <InviteOpen className="card" setReceivedInvites={setReceivedInvites} event={invite} key={invite.potluck_id} potluckId={invite.potluck_id} />)
 
-                        : <h3 >You have no pending invitations</h3>}
+                        : <h3>You have no pending invitations</h3>}
                     </div>
                 </div>
                 
@@ -99,7 +99,7 @@ export default function Dashboard() {
 
                         attendingInvites.map(invite => <InviteAccepted className="card" event={invite} key={invite.potluck_id} />)
 
-                        : <h3 >You have accepted no accepted invitations</h3>}
+                        : <h3>You have accepted no accepted invitations</h3>}
 
 
                     </div>
@@ -109,6 +109,8 @@ export default function Dashboard() {
 }
 
 const StyledDash = styled.div`
+
+background: skyblue;
 
 #createEventButton {
     background-color: green;
@@ -121,15 +123,21 @@ const StyledDash = styled.div`
 }
 .dashSection {
     display: flex;
-    flex-direction: row wrap;
-    justify-content: space-around;
-    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* margin: 0 5%; */
+}
+.dashSection h3 {
+    margin: auto;
 }
 .hostedEvent {
     border: solid grey 1px;
 }
 .buttonContainer{
     margin: 2% 0;
+}
+div.h3{
+    text-align: center;
 }
 `
 
