@@ -193,10 +193,6 @@ export default function CreateEventForm(props){
                
 
             </form>
-
-                
-
-                
         </StyledEvent>
     )
 

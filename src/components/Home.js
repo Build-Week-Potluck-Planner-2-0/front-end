@@ -6,11 +6,10 @@ import food4 from '../images/food4.jpg';
 
 const Home = () => {
     return (
-    <>
+    <ContainerDiv>
         <HomeSection>
             <div>
-                <h2>did everyone bring mac and cheese?</h2>
-                <CreateMealButton>Create a Meal</CreateMealButton>
+                <h2>Potluck Planner!</h2>
             </div>
         </HomeSection>
         <AboutSection >
@@ -61,11 +60,15 @@ const Home = () => {
                 </TextSection>
             </ContainerSection>
         </ShopSection>
-    </>        
+    </ContainerDiv>        
     )
 }
 
 export default Home;
+
+const ContainerDiv = styled.div`
+    
+`
 
 const HomeSection= styled.div`
 background-image:url(${header});
@@ -79,16 +82,13 @@ justify-content: center;
 align-items: center;
 text-align:center;
         h2{
-            background-color:yellow;
             font-size: 48px;             
-            color: rgb(255, 60, 0);
-        }
+            color: #266035;
+        } 
         div {
             position: fixed;
-            top: 10%;
-            left: 30%;
-            font-size: 24px;            
-        }        
+            top: 10%;           
+        }       
 `
 
 const AboutSection = styled.div`    
@@ -126,7 +126,8 @@ const TextSection = styled.div`
     padding:6%;
     text-align:center; 
         h2{
-            font-size: 36px;             
+            font-size: 36px;     
+            color: #266035;        
            
         }
         div {
